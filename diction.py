@@ -1,7 +1,7 @@
 """
 Muslitdinov Ulugbek
 CSC110/001
-EXTRA CREDIT WORK FOR PROJECT 5 BY FRIDAY
+Project 5
 This program involves functions that are used to create or edit a dictionary.
 The exception is a "letter_grade" function that returns a letter grade based on the input of a number grade.
 """
@@ -25,10 +25,8 @@ def letter_grade(scope):
         return 'C'
     elif scope >= 60:
         return 'D'
-    elif scope >= 50:
-        return 'E'
     else:
-        return 'F'
+        return 'E'
 
 
 def count_vowels(strings):
@@ -88,10 +86,12 @@ def words_by_first_letter(strings):
     for phrase in strings:
         words = phrase.split()
         for word in words:
-            if word[0] in count:
-                count[word[0]].append(word)
+            first_letter = word[0]
+            if first_letter in count:
+                if word not in count[first_letter]:
+                    count[first_letter].append(word)
             else:
-                count[word[0]] = [word]
+                count[first_letter] = [word]
     return count
 
 
@@ -181,7 +181,7 @@ def add_letter_grade(grades):
         average_score = (2*grades[name]["test"] + grades[name]["hw"]) / 3
         letter_score = letter_grade(average_score)
         grades[name]["course"] = letter_score
-    return grades
+    return None
 
 
 def compute_all_letter_grades(grades):
@@ -210,7 +210,6 @@ def compute_all_letter_grades(grades):
             test_score = 0
             hw_score = grades["hw"][name]
             average_score = (2*test_score + hw_score) / 3
-            print(average_score)
             letter_score = letter_grade(average_score)
             letter_scores[name] = letter_score
     return letter_scores
@@ -265,3 +264,5 @@ def gather(values):
                 else:
                     count[last_str] = [value]
     return count
+
+
