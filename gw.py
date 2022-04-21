@@ -1,14 +1,8 @@
-def polarity(x):
-    x = str(x)
-    if x == "0":
-        return "Zero"
-    elif x[0] == "-":
-        return "Negative"
-    else:
-        return "Positive"
+name = str(input("Enter filename: "))
 
-# <==========================================TESTS=====================================================>
-
-print(polarity(1))
-print(polarity(-1))
-print(polarity(0))
+try:
+    f = open(name, 'r')
+    print(len(f.read()))
+    f.close()
+except FileNotFoundError:
+    print("File not found")
